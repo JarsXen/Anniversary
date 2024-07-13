@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Anniversary</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+        .countdown {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .countdown h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .countdown p {
+            font-size: 2rem;
+            color: #777;
+            margin: 10px 0;
+        }
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .timer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .timer span {
+            font-size: 2rem;
+            color: #333;
+        }
+        .timer label {
+            font-size: 0.8rem;
+            color: #777;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <h1>Countdown to Our 1st Anniversary</h1>
+        <div class="timer-container">
+            <div class="timer" id="days">
+                <span id="daysNum">0</span>
+                <label>Days</label>
+            </div>
+            <div class="timer" id="hours">
+                <span id="hoursNum">0</span>
+                <label>Hours</label>
+            </div>
+            <div class="timer" id="minutes">
+                <span id="minutesNum">0</span>
+                <label>Minutes</label>
+            </div>
+            <div class="timer" id="seconds">
+                <span id="secondsNum">0</span>
+                <label>Seconds</label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("July 16, 2024 00:00:00").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the results in the elements
+            document.getElementById("daysNum").innerHTML = days;
+            document.getElementById("hoursNum").innerHTML = hours;
+            document.getElementById("minutesNum").innerHTML = minutes;
+            document.getElementById("secondsNum").innerHTML = seconds;
+
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("daysNum").innerHTML = "0";
+                document.getElementById("hoursNum").innerHTML = "0";
+                document.getElementById("minutesNum").innerHTML = "0";
+                document.getElementById("secondsNum").innerHTML = "0";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
