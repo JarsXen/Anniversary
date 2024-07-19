@@ -1,253 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>Countdown Anniversary</title>
+    <title>Maintenance</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: var(--background-color);
             margin: 0;
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #f4f4f9;
+            color: #333;
         }
-        :root {
-            --background-color: #121212;
-            --text-color: #ffffff;
-            --primary-color: #ff4081;
-            --secondary-color: #1e1e1e;
-        }
-        .light-mode {
-            --background-color: #f6f7f9;
-            --text-color: #000000;
-            --primary-color: #ff4081;
-            --secondary-color: #ffffff;
-        }
-        .countdown {
+        .container {
             text-align: center;
-            background-color: rgba(30, 30, 30, 0.95);
-            padding: 30px;
+            background-color: #ffffff;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            animation: fadeIn 0.8s ease forwards;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
         }
-        .countdown h1 {
-            font-size: 3rem;
-            color: var(--primary-color);
+        .container h1 {
+            font-size: 2.5em;
             margin-bottom: 20px;
-            font-family: 'Arial Black', sans-serif;
+            color: #333;
         }
-        .heart {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background-color: var(--primary-color);
-            position: relative;
-            transform: rotate(-45deg);
-            margin: 0 5px;
+        .container p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #555;
         }
-        .heart:before,
-        .heart:after {
-            content: "";
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            position: absolute;
-            width: 30px;
-            height: 30px;
-        }
-        .heart:before {
-            top: -15px;
-            left: 0;
-        }
-        .heart:after {
-            top: 0;
-            left: 15px;
-        }
-        .timer-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .timer {
-            flex: 1;
-            text-align: center;
-            padding: 20px;
-            background-color: var(--secondary-color);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            animation: scaleUp 0.5s ease forwards;
-        }
-        .timer span {
-            font-size: 3rem;
-            color: var(--primary-color);
-        }
-        .timer label {
-            font-size: 1rem;
-            color: #777;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-        .hidden-content {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .hidden-content span {
-            display: block;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin: 10px 0;
-        }
-        .button {
-            margin-top: 20px;
-        }
-        .button button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .button button:hover {
-            background-color: #e60073;
-        }
-        .button a {
-            color: white;
+        .container a {
+            color: #007bff;
             text-decoration: none;
+            font-weight: bold;
         }
-        .toggle-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+        .container a:hover {
+            text-decoration: underline;
         }
-        .toggle-btn:hover {
-            background-color: #e60073;
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
         }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
         }
-        @keyframes scaleUp {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleMode()">Toggle Dark/Light Mode</button>
-    <div class="countdown">
-        <h1>Countdown to Our 1st Anniversary <span class="heart"></span></h1>
-        <div class="timer-container">
-            <div class="timer" id="days">
-                <span id="daysNum">0</span>
-                <label>Days</label>
-            </div>
-            <div class="timer" id="hours">
-                <span id="hoursNum">0</span>
-                <label>Hours</label>
-            </div>
-            <div class="timer" id="minutes">
-                <span id="minutesNum">0</span>
-                <label>Minutes</label>
-            </div>
-            <div class="timer" id="seconds">
-                <span id="secondsNum">0</span>
-                <label>Seconds</label>
-            </div>
+    <div class="container">
+        <h1>Website Sedang Dalam Pemeliharaan</h1>
+        <p>Mohon maaf atas ketidaknyamanannya. Kami sedang melakukan pemeliharaan untuk meningkatkan layanan kami.</p>
+        <p>Silakan kunjungi Instagram kami untuk pembaruan lebih lanjut:</p>
+        <p><a href="https://www.instagram.com/fajarirwansah" target="_blank">Instagram FAJAR IRWANSAH</a></p>
+        <div class="footer">
+            <p>&copy; 2024 FAJAR IRWANSAH. Semua hak dilindungi.</p>
         </div>
     </div>
-
-    <div class="hidden-content">
-        <div class="description">
-            <span>Hallo</span>
-        </div>
-        <div class="greetings">
-            <span>L</span>
-            <span>A</span>
-            <span>L</span>
-            <span>A</span>
-            <span>A</span>
-        </div>
-        <div class="description">
-            <span>Selamat Anniversary ke 1 Tahun sayang!! 💕💖</span>
-        </div>
-        <div class="button">
-            <button>
-                <a href="flower.html">Klik disini</a>
-            </button>
-        </div>
-    </div>
-
-    <script>
-        function toggleMode() {
-            document.body.classList.toggle('light-mode');
-        }
-
-        // Set the date we're counting down to
-        var countDownDate = new Date("July 15, 2024 19:05:00").getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-
-            // Get today's date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the results in the elements
-            document.getElementById("daysNum").innerHTML = days;
-            document.getElementById("hoursNum").innerHTML = hours;
-            document.getElementById("minutesNum").innerHTML = minutes;
-            document.getElementById("secondsNum").innerHTML = seconds;
-
-            // If the count down is over, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.querySelector('.countdown').style.display = 'none';
-                document.querySelector('.hidden-content').style.display = 'block';
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
